@@ -13,6 +13,21 @@ Currently, two official plugins are available:
     "server": "node backend/server.js"
   },
 4. npm i nodemon --> route changes reflect aagurathukkaga every time terminal kill pannittu re run panna venum auto rerun pannirum intha package
+5. JWT token
+   ====================
+   const generateTokenAndSetCookie = (userId, res) => {
+    const token = jwt.sign({userId}, process.env.JWT_SECRET, {
+        expiresIn: '15d'
+    })
 
+    res.cookie("jwt",token,{
+        maxAge: 15 * 24 * 60 * 1000, //ms
+        httpOnly: true, //prevent XXS attacks cross-site scripting attacks
+        sameSite:"strict", // CSRF attacks cross-site request forgery attacks
+    })
+  };
+
+  openssl rand -base64 32 (generate from bash)
+  37vrDkLjYq839NrmD4Wxzoj+LD9vKttB6+/NU8qduq4=(sample key)
 
 
