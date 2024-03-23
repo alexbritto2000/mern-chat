@@ -11,7 +11,7 @@ Currently, two official plugins are available:
 2. npm install express dotenv cookie-parser bcryptjs mongoose socket.io jsonwebtoken
 3. "scripts": {
     "server": "node backend/server.js"
-  },
+  }, npm run server
 4. npm i nodemon --> route changes reflect aagurathukkaga every time terminal kill pannittu re run panna venum auto rerun pannirum intha package
 5. JWT token
    ====================
@@ -29,5 +29,7 @@ Currently, two official plugins are available:
 
   openssl rand -base64 32 (generate from bash)
   37vrDkLjYq839NrmD4Wxzoj+LD9vKttB6+/NU8qduq4=(sample key)
+
+6. send msg and get msg
 
 
