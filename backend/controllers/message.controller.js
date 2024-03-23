@@ -8,34 +8,56 @@ export const sendMessage = async (req, res) => {
     const senderId = req.user._id;
 
     let conversation = await Conversation.findOne({
-        //participants objects ellathaium check panni senderId and receiverId irukra objects irukka ntu check pannum $all --> mongoose syntax
+      //participants objects ellathaium check panni senderId and receiverId irukra objects irukka ntu check pannum $all --> mongoose syntax
       participants: { $all: [senderId, receiverId] },
     });
 
-    if(!conversation) {
-        conversation = await Conversation.create({
-          participants: [senderId, receiverId],
-        });
+    if (!conversation) {
+      conversation = await Conversation.create({
+        participants: [senderId, receiverId],
+      });
     }
 
     const newMessage = new Message({
       senderId,
       receiverId,
-      message
+      message,
     });
 
-    if(newMessage) {
-        conversation.messages.push(newMessage._id)
+    if (newMessage) {
+      conversation.messages.push(newMessage._id);
     }
 
-    await conversation.save();
-    await newMessage.save();
+    //SOCKET IO FUNCTIONALITY WILL GO HERE
+
+    // await conversation.save();
+    // await newMessage.save();
 
     //this will run in parallel
     await Promise.all([conversation.save(), newMessage.save()]);
 
     res.status(201).json(newMessage);
-    
+  } catch (error) {
+    console.log("Error in sendMessage controller:", error.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const getMessages = async (req, res) => {
+  try {
+    const {id:userToChatId}=req.params;
+    const senderId = req.user._id;
+
+    const conversation = await Conversation.findOne({
+      participants: { $all: [senderId, userToChatId] },
+    }).populate("messages");
+
+    if(!conversation) return res.status(200).json([]);
+
+    const messages = conversation.messages;
+
+    res.status(200).json(messages);
+
   } catch (error) {
     console.log("Error in sendMessage controller:", error.message);
     res.status(500).json({ error: "Internal server error" });
