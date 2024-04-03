@@ -7,7 +7,7 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-1. vite+react
+1. vite+react (npm create vite@latest .)
 2. npm install express dotenv cookie-parser bcryptjs mongoose socket.io jsonwebtoken
 3. "scripts": {
     "server": "node backend/server.js"
@@ -31,5 +31,10 @@ Currently, two official plugins are available:
   37vrDkLjYq839NrmD4Wxzoj+LD9vKttB6+/NU8qduq4=(sample key)
 
 6. send msg and get msg
+
+Frontend(React+Vite, Daisy UI, tailwind css)
+1. Install rect_vite
+2. Config tailwind css
+3. install daisy ui
 
 
