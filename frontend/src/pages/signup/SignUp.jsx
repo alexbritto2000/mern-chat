@@ -12,7 +12,7 @@ const SignUp = () => {
     gender: "",
   });
 
-  const {loading, signup} = useSignup()
+  const { loading, signup } = useSignup();
 
   const handleCheckboxChange = (gender) => {
     setInputs({ ...inputs, gender });
@@ -92,7 +92,10 @@ const SignUp = () => {
           </div>
 
           {/* Gender checkbox */}
-          <GenderCheckbox onCheckboxChange={handleCheckboxChange} selectedGender={inputs.gender} />
+          <GenderCheckbox
+            onCheckboxChange={handleCheckboxChange}
+            selectedGender={inputs.gender}
+          />
 
           <Link
             to={"/login"}
@@ -103,8 +106,15 @@ const SignUp = () => {
           </Link>
 
           <div>
-            <button className="btn btn-block btn-sm border border-slate-700">
-              Sign Up
+            <button
+              className="btn btn-block btn-sm border border-slate-700"
+              disabled={loading}
+            >
+              {loading ? (
+                <span className="loading loading-spinner"></span>
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </div>
         </form>
