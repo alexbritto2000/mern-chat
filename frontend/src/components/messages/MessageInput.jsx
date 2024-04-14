@@ -8,9 +8,9 @@ const MessageInput = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-	if(!message) return;
-	await sendMessage(message);
-	setMessage("");
+    if (!message) return;
+    await sendMessage(message);
+    setMessage("");
   };
 
   return (
@@ -27,7 +27,11 @@ const MessageInput = () => {
           type="submit"
           className="absolute inset-y-0 end-0 flex items-center pe-3"
         >
-          {loading ? <div className="loading loading-spinner"></div> : <BsSend />}
+          {loading ? (
+            <div className="loading loading-spinner"></div>
+          ) : (
+            <BsSend />
+          )}
         </button>
       </div>
     </form>
